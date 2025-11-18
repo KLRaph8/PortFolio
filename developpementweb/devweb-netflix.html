@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- TITRE DE LA PAGE (BON POUR LE SEO) -->
+    <title>Raphaël Klur - Portfolio Design & Audiovisuel</title>
+
+    <!-- NOUVEAU : DESCRIPTION POUR GOOGLE -->
+    <meta name="description" content="Portfolio de Raphaël Klur, étudiant en MMI. Découvrez mes projets en graphisme, motion design, audiovisuel et UI/UX design.">
+
+    <!-- NOUVEAU : FAVICON (Icône d'onglets) -->
+    <link rel="icon" href="assets/r-big.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="assets/favicon.ico" type="image/png" sizes="16x16"> <!-- Crée un petit .ico de 16x16 de ton logo si tu peux -->
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180"> <!-- Un .png de 180x180 de ton logo -->
+
+    
+    <link rel="stylesheet" href="https://use.typekit.net/ouw8rdp.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="logo">
+            <img src="../assets/r-big.svg" alt="Logo du créateur">
+            <a href="../index.html">RAPHAËL KLUR</a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html" class="active">TRAVAUX</a></li>
+                <li><a href="../a-propos.html">À PROPOS</a></li>
+                <li><a href="../contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container project-detail-page">
+        <a href="devweb.html" class="btn-back">← Retour au Développement Web</a>
+        <h1 class="animate-on-scroll">Clone Netflix (1ère Année)</h1>
+        
+        <!-- Le 'wrapper' affiche maintenant la grande capture d'écran -->
+        <div class="video-player-wrapper animate-on-scroll">
+            <!-- 
+                NOUVEAU : L'image est maintenant dans un lien '<a>'
+                qui pointe vers l'image elle-même pour la lightbox.
+            -->
+            <a href="../assets/netflix-clone-thumb.png" class="project-image-lightbox">
+                <img src="../assets/netflix-clone-thumb.png" alt="Aperçu du projet clone Netflix">
+            </a>
+        </div>
+
+        <section class="video-presentation animate-on-scroll">
+            <h2>À propos de ce projet</h2>
+            <p>Mon premier projet d'intégration en première année. L'objectif était de reproduire la page d'accueil de Netflix en utilisant uniquement HTML et CSS, avec un petit peu de PHP par moments.</p>
+            <p><strong>Technologies :</strong> HTML5, CSS3,PHP</p>
+        </section>
+
+    </main>
+
+    <footer class="site-footer-bottom">
+        <div class="footer-content">
+            <p>RAPHAËL KLUR &copy; 2025</p>
+            <div class="social-icons">
+                <!-- Lien LinkedIn -->
+                <a href="https://www.linkedin.com/in/rapha%C3%ABl-klur/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <!-- NOUVEAU: Lien Instagram -->
+                <a href="https://www.instagram.com/raphael_klur/" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.77-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.646-.07-4.85s.012-3.584.07-4.85c.148-3.225 1.664-4.77 4.919-4.919 1.266.058 1.646.07 4.85.07zm0-2.163c-3.273 0-3.66.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.287-.073 1.674-.073 4.947s.014 3.66.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.287.059 1.674.073 4.947.073s3.66-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.287.073-1.674.073-4.947s-.014-3.66-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.287-.059-1.674-.073-4.947-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.44-.645 1.44-1.44s-.645-1.44-1.44-1.44z"/></svg>
+                </a>
+                <!-- Lien Email -->
+                <a href="mailto:raphael.klur@outlook.fr" title="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- NOUVEAU : Ajout de la structure de la Lightbox (identique à creaperso.html) -->
+    <div id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
