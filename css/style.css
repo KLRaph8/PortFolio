@@ -28,6 +28,7 @@
 
   /* Police principale (via Adobe Fonts) */
   --font-main: "monte-stella", sans-serif;
+  --secondary-font: "dm-sans", sans-serif;
 }
 
 /* Reset simple */
@@ -44,6 +45,7 @@ html {
 }
 
 body {
+  /* On garde Monte Stella par défaut pour les titres et la structure */
   font-family: var(--font-main);
   background-color: #fdfdfd;
   color: #333;
@@ -145,6 +147,7 @@ main {
 }
 
 .site-footer-bottom p {
+  font-family: var(--secondary-font); /* MODIFICATION: Police secondaire */
   font-size: 0.9rem;
   color: #888;
   margin: 0;
@@ -475,6 +478,7 @@ main {
 }
 
 .about-bio {
+  font-family: var(--secondary-font); /* MODIFICATION: Police secondaire */
   font-size: 1.1rem;
   line-height: 1.8;
   color: #555;
@@ -534,6 +538,7 @@ main {
 }
 
 .skills-category li {
+  font-family: var(--secondary-font); /* MODIFICATION: Police secondaire */
   font-size: 1.1rem;
   color: #555;
   display: flex;
@@ -608,6 +613,7 @@ main {
   margin-bottom: 20px;
 }
 .contact-info p {
+  font-family: var(--secondary-font); /* MODIFICATION: Police secondaire */
   font-size: 1.1rem;
   color: #555;
   margin-bottom: 30px;
@@ -674,7 +680,7 @@ main {
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-family: var(--font-main);
+  font-family: var(--secondary-font); /* MODIFICATION: Police secondaire pour saisie */
   font-size: 1rem;
 }
 
@@ -770,6 +776,7 @@ main {
 }
 
 .project-detail-page p {
+  font-family: var(--secondary-font); /* MODIFICATION: Police secondaire */
   font-size: 1.1rem;
   margin-bottom: 15px;
   line-height: 1.8;
@@ -851,6 +858,7 @@ main {
 }
 
 .project-info p {
+  font-family: var(--secondary-font); /* MODIFICATION: Police secondaire */
   font-size: 1rem;
   color: #777;
 }
@@ -1001,6 +1009,7 @@ main {
 }
 
 .confidential-project-notice p {
+  font-family: var(--secondary-font); /* MODIFICATION: Police secondaire */
   font-size: 1.1rem;
   color: #555;
   margin: 0;
@@ -1080,6 +1089,7 @@ main {
 }
 
 .bubble-desc {
+  font-family: var(--secondary-font); /* MODIFICATION: Police secondaire */
   font-size: 1.05rem;
   color: #333;
   font-weight: 500;
