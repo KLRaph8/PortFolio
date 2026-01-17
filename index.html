@@ -15,13 +15,11 @@
     <link rel="stylesheet" href="https://use.typekit.net/ouw8rdp.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- CORRECTION: Le Scroll-Snap est appliqué UNIQUEMENT à cette page -->
+    <!-- Scroll-Snap uniquement sur l'accueil -->
     <style>
         html {
             scroll-snap-type: y mandatory;
         }
-
-        /* On désactive le snap sur mobile, car il est dans le style.css principal */
         @media (max-width: 768px) {
             html {
                 scroll-snap-type: none;
@@ -55,7 +53,18 @@
             <div id="hero-blob"></div>
             <h2 class="hero-subtitle" id="hero-subtitle">Bienvenue à toi !</h2>
             <h1 class="main-title" id="main-title">Explore mes créations</h1>
-            <a href="#portfolio-grid-section" class="scroll-down-btn animate-on-scroll">Découvrir mes projets ↓</a>
+            <a href="#intro-pitch" class="scroll-down-btn animate-on-scroll">Découvrir mes projets ↓</a>
+        </section>
+
+        <!-- SECTION PITCH AVEC BOUTON AJOUTÉ -->
+        <section id="intro-pitch" class="intro-pitch">
+            <p class="animate-on-scroll">
+                Je suis <strong class="highlight">Raphaël Klur</strong>, étudiant en MMI. <br>
+                Je conçois des expériences visuelles, du <strong>Webdesign</strong> à la <strong>Vidéo</strong>.
+            </p>
+            
+            <!-- NOUVEAU BOUTON ICI -->
+            <a href="#portfolio-grid-section" class="scroll-down-btn animate-on-scroll" style="--delay: 2;">Voir les travaux ↓</a>
         </section>
 
         <!-- PAIRE 1 -->
@@ -120,7 +129,7 @@
     <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
-    <script defer src="/_vercel/insights/script.js"></script>
+    <script src="/_vercel/insights/script.js"></script>
     
 </body>
 </html>
