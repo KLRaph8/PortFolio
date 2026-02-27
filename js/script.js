@@ -105,86 +105,101 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Fin de la logique du "Blob" ---
 
 
-    // --- Logique du formulaire de contact (CORRIGÉ) ---
-    // CORRECTION: Cible le bon ID de formulaire
-    const contactForm = document.getElementById('contact-form-netlify');
-    // CORRECTION: Cible la bonne classe de boutons
+    // --- Logique du formulaire de contact (CORRIGÉ POUR WEB3FORMS) ---
+    // Cible le nouvel ID du formulaire Web3Forms
+    const contactForm = document.getElementById('contact-form');
     const subjectButtons = document.querySelectorAll('.subject-option');
-    // CORRECTION: Cible le bon ID de champ
     const subjectInput = document.getElementById('subject-hidden');
     
-    if (contactForm && subjectButtons.length > 0 && subjectInput) {
+    if (contactForm) {
         
-        // 1. Logique des boutons de sujet
-        subjectButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault(); 
-                // CORRECTION: Utilise data-value comme dans le HTML
-                const subject = button.getAttribute('data-value');
-                
-                subjectInput.value = subject;
-                
-                subjectButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+        // 1. Logique des boutons de sujet (si présents)
+        if (subjectButtons.length > 0 && subjectInput) {
+            subjectButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    const subject = button.getAttribute('data-value');
+                    
+                    subjectInput.value = subject;
+                    
+                    subjectButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
             });
-        });
+        }
 
-        // 2. Logique d'envoi AJAX Netlify
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+        // 2. Logique d'envoi AJAX Web3Forms
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Empêche la redirection
             
-            // CORRECTION: Cible le message de succès HORS du formulaire
             const successMessage = document.getElementById('success-message');
             const submitButton = contactForm.querySelector('button[type="submit"]');
             const originalButtonText = submitButton.textContent;
 
+            // Sécurise le bouton pendant l'envoi
             submitButton.disabled = true;
             submitButton.textContent = 'Envoi en cours...';
-            
-            // Cache le formulaire et montre le message
-            if(successMessage) {
-                successMessage.style.display = 'none';
-                successMessage.style.backgroundColor = '#e6f9e6';
-                successMessage.style.borderColor = '#b3e6b3';
-                successMessage.style.color = '#336633';
-            }
 
-
+            // Prépare les données pour Web3Forms (Format JSON requis)
             const formData = new FormData(contactForm);
-            const encodedData = new URLSearchParams(formData).toString();
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
 
-            fetch('/', {
+            fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: encodedData
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
             })
-            .then(() => {
-                if (successMessage) {
-                    // Cache le formulaire
+            .then(async (response) => {
+                if (response.status == 200) {
+                    // Succès : Cache le formulaire
                     contactForm.style.display = 'none';
-                    // Affiche le message de succès
-                    successMessage.textContent = 'Merci ! Votre message a bien été envoyé. Je reviens vers vous très rapidement.';
-                    successMessage.style.display = 'block';
+                    
+                    if (successMessage) {
+                        // Affiche le message de succès avec style
+                        successMessage.textContent = 'Merci ! Votre message a bien été envoyé. Je reviens vers vous très rapidement.';
+                        successMessage.style.backgroundColor = '#e6f9e6';
+                        successMessage.style.borderColor = '#b3e6b3';
+                        successMessage.style.color = '#336633';
+                        successMessage.style.display = 'block';
+                    }
+                } else {
+                    // Erreur serveur Web3Forms
+                    if (successMessage) {
+                        successMessage.textContent = 'Une erreur serveur est survenue. Veuillez réessayer.';
+                        successMessage.style.backgroundColor = '#f9e6e6';
+                        successMessage.style.borderColor = '#e6b3b3';
+                        successMessage.style.color = '#663333';
+                        successMessage.style.display = 'block';
+                    }
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalButtonText;
                 }
-                // Pas besoin de reset le form s'il est caché
             })
-            .catch((error) => {
-                console.error("Erreur d'envoi à Netlify:", error);
+            .catch(error => {
+                // Erreur de connexion
+                console.error("Erreur de connexion :", error);
                 if (successMessage) {
-                    // Affiche un message d'erreur DANS la div succès
-                    successMessage.textContent = 'Une erreur est survenue. Veuillez réessayer.';
-                    successMessage.style.backgroundColor = '#f9e6e6'; // Erreur en rouge
+                    successMessage.textContent = 'Une erreur de connexion est survenue. Veuillez vérifier votre internet.';
+                    successMessage.style.backgroundColor = '#f9e6e6';
                     successMessage.style.borderColor = '#e6b3b3';
                     successMessage.style.color = '#663333';
                     successMessage.style.display = 'block';
                 }
-                // Ré-active le bouton en cas d'erreur pour que l'utilisateur puisse réessayer
                 submitButton.disabled = false;
                 submitButton.textContent = originalButtonText;
+            })
+            .finally(() => {
+                // On réinitialise le formulaire (seulement en arrière-plan s'il est caché)
+                contactForm.reset();
+                if (subjectButtons.length > 0) {
+                    subjectButtons.forEach(btn => btn.classList.remove('active'));
+                }
+                if (subjectInput) subjectInput.value = '';
             });
-            // Note: Le .finally() est retiré pour que le bouton reste "envoi"
-            // jusqu'à ce que le message de succès/erreur s'affiche.
-            // Le formulaire ne se réinitialise que s'il y a succès.
         });
     }
     // --- Fin de la logique du formulaire ---
