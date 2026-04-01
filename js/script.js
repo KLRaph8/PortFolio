@@ -294,6 +294,42 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Fin de la Logique Lightbox ---
 
 
+    // --- Logique du Flipbook 3D (Livre) ---
+    const bookContainer = document.getElementById('mon-flipbook');
+    
+    if (bookContainer && typeof St !== 'undefined') {
+        
+        // CORRECTION : On retire l'ombre globale qui colorait le "vide" en blanc.
+        // La librairie s'occupera d'ajouter des ombres uniquement sur les pages !
+        bookContainer.style.boxShadow = 'none';
+        bookContainer.style.background = 'transparent';
+
+        // Initialisation de la librairie PageFlip
+        const pageFlip = new St.PageFlip(bookContainer, {
+            // Dimensions exactes du ratio A6 horizontal (148mm x 105mm)
+            width: 888,  // 148 * 6
+            height: 630, // 105 * 6
+            size: "stretch", // Le livre s'adapte à l'écran
+            minWidth: 444,   // Limites adaptées au même ratio
+            maxWidth: 1332,
+            minHeight: 315,
+            maxHeight: 945,
+            drawShadow: true, // Active les ombres 3D internes
+            
+            // On GARDE showCover sur "true". 
+            // Si on le met sur "false", ta couverture sera à gauche et la page 2 à droite, 
+            // ce qui va complètement décaler tes doubles-pages intérieures !
+            showCover: true, 
+            
+            mobileScrollSupport: false, // Permet le "swipe" manuel sur mobile
+            maxShadowOpacity: 0.5,
+        });
+
+        // Charge les éléments HTML
+        pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+    }
+    // --- Fin de la Logique Flipbook ---
+
     // --- Logique de l'animation au scroll ---
     const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
 

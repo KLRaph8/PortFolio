@@ -6,13 +6,15 @@
 /* 2. COMPOSANTS GLOBAUX
 /* 3. STYLES DE PAGES
 /* - Page: Accueil (Hero & Blob)
-/* - Page: Accueil (Bio Express) <--- AJOUT
+/* - Page: Accueil (Bio Express) 
 /* - Page: Accueil (Grille Catégories)
 /* - Page: À Propos
 /* - Page: Contact 
 /* - Page: Créations Perso (Masonry)
 /* - Page: Détail Projet (Générique)
 /* 4. COMPOSANTS RÉUTILISABLES
+/* - Galerie de projets
+/* - Liseuse Flipbook 3D (Livre) <--- MISE À JOUR
 /* 5. CLASSES UTILITAIRES
 /* 6. RESPONSIVE (MEDIA QUERIES)  
 /*
@@ -41,8 +43,6 @@
 
 html {
   scroll-behavior: smooth;
-  /* CORRECTION: La règle de snap est RETIRÉE d'ici */
-  /* scroll-snap-type: y mandatory; */
 }
 
 body {
@@ -379,19 +379,13 @@ main {
 
 /* --- PAGE: ACCUEIL (BIO EXPRESS / PITCH) --- */
 .intro-pitch {
-    /* MODIFICATION : On force la hauteur à 100% de l'écran (comme les autres sections) */
     height: 100svh; 
-    
-    /* On utilise Flexbox pour centrer le texte parfaitement au milieu de l'écran */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     padding: 20px;
     margin: 0 auto;
-    
-    /* Le snap s'alignera maintenant parfaitement en haut de l'écran */
     scroll-snap-align: start; 
 }
 
@@ -415,9 +409,7 @@ main {
     font-weight: 700;
 }
 
-/* Ajustement Mobile */
 @media (max-width: 768px) {
-    /* Sur mobile, on garde aussi le plein écran pour l'immersion */
     .intro-pitch {
         height: 100svh;
         padding: 20px;
@@ -768,7 +760,7 @@ main {
 }
 
 .success-message {
-  display: none; /* Caché par défaut */
+  display: none; 
   margin-top: 20px;
   padding: 15px;
   background-color: #e6f9e6;
@@ -1148,6 +1140,44 @@ main {
   line-height: 1.4;
 }
 
+/* --- COMP: FLIPBOOK 3D (Livre) --- */
+.flipbook-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 40px auto 80px auto;
+  perspective: 1500px;
+}
+
+#mon-flipbook {
+  background-color: transparent;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+#mon-flipbook .page {
+  background-color: #fdfdfd;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.05); 
+  overflow: hidden;
+}
+
+#mon-flipbook .cover-page {
+  background-color: #fff;
+}
+
+#mon-flipbook .page img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; 
+  pointer-events: none; 
+}
+
+@media (max-width: 500px) {
+  .flipbook-wrapper {
+    margin-top: 20px;
+  }
+}
 
 /* ======================================== */
 /* 5. CLASSES UTILITAIRES               */
@@ -1208,13 +1238,6 @@ main {
 
 @media (max-width: 768px) {
 
-  /* CORRECTION: La règle de snap est RETIRÉE d'ici */
-  /*
-  html {
-    scroll-snap-type: none;
-  }
-  */
-
   /* --- Composants Globaux (Mobile) --- */
   .site-header {
     flex-direction: column;
@@ -1238,7 +1261,7 @@ main {
 
   /* --- Pages (Mobile) --- */
   .hero-section {
-    height: 100svh; /* Garde la hauteur pour le hero */
+    height: 100svh; 
   }
 
   .hero-section h1 {
@@ -1253,7 +1276,6 @@ main {
       display: none;
   }
 
-  /* AJOUT: Ajustement pour la Bio Express sur mobile */
   .intro-pitch {
       padding: 60px 20px;
   }
@@ -1261,20 +1283,18 @@ main {
       font-size: 1.3rem;
   }
 
-  /* MODIFIÉ: Comportement du snap-row sur mobile */
   .portfolio-snap-row {
-    height: auto; /* Revient à un scroll normal */
-    flex-direction: column; /* Empile les cartes */
+    height: auto; 
+    flex-direction: column; 
     padding: 20px 15px;
     gap: 20px;
   }
   
-  /* MODIFIÉ: Restaure la taille originale des cartes sur mobile */
   .category-card {
     flex-basis: auto;
     width: 100%;
     height: 280px;
-    min-height: 0; /* Annule la hauteur min du desktop */
+    min-height: 0; 
   }
 
   .project-gallery {

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Livre Illustré - Raphaël Klur</title>
+    <meta name="description" content="Découvrez le livre entièrement illustré et mis en page par Raphaël Klur.">
+
+    <link rel="icon" href="assets/r-big.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="assets/favicon.ico" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180">
+
+    <link rel="stylesheet" href="https://use.typekit.net/ouw8rdp.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="logo">
+            <img src="../assets/r-big.svg" alt="Logo du créateur">
+            <a href="../index.html">RAPHAËL KLUR</a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html" class="active">TRAVAUX</a></li>
+                <li><a href="../a-propos.html">À PROPOS</a></li>
+                <li><a href="../contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container project-detail-page">
+        <a href="creaperso.html" class="btn-back">← Retour aux Créations</a>
+        <h1 class="animate-on-scroll">Livre Illustré : La saucisse magique</h1>
+        
+        <section class="video-presentation animate-on-scroll">
+            <h2>L'art de raconter par l'image</h2>
+            <p>Voici l'un de mes projets les plus complets : l'illustration et la mise en page intégrale d'un livre. De la recherche des personnages à la composition des pages, l'objectif était de créer un univers visuel cohérent et immersif.</p>
+            <p><strong>Mon rôle :</strong> Direction artistique, illustration complète et mise en page éditoriale.</p>
+            <p><strong>Outils utilisés :</strong> Adobe Photoshop, Procreate, Adobe InDesign.</p>
+        </section>
+
+        <!-- FLIPBOOK 3D -->
+        <h2 class="animate-on-scroll" style="text-align: center; margin-top: 60px;">Feuilletez le livre</h2>
+        <p class="click-instruction animate-on-scroll">Cliquez dans les coins ou glissez la souris pour tourner les pages.</p>
+
+        <!-- Le conteneur du livre -->
+        <div class="flipbook-wrapper animate-on-scroll">
+            <div id="mon-flipbook">
+                
+                <!-- COUVERTURE (Page 1) -->
+                <div class="page cover-page">
+                    <img src="../assets/livre/page1.jpg" alt="Couverture">
+                </div>
+
+                <!-- PAGES INTÉRIEURES (Pages 2 à 15) -->
+                <div class="page"><img src="../assets/livre/page2.jpg" alt="Page 2"></div>
+                <div class="page"><img src="../assets/livre/page3.jpg" alt="Page 3"></div>
+                <div class="page"><img src="../assets/livre/page4.jpg" alt="Page 4"></div>
+                <div class="page"><img src="../assets/livre/page5.jpg" alt="Page 5"></div>
+                <div class="page"><img src="../assets/livre/page6.jpg" alt="Page 6"></div>
+                <div class="page"><img src="../assets/livre/page7.jpg" alt="Page 7"></div>
+                <div class="page"><img src="../assets/livre/page8.jpg" alt="Page 8"></div>
+                <div class="page"><img src="../assets/livre/page9.jpg" alt="Page 9"></div>
+                <div class="page"><img src="../assets/livre/page10.jpg" alt="Page 10"></div>
+                <div class="page"><img src="../assets/livre/page11.jpg" alt="Page 11"></div>
+                <div class="page"><img src="../assets/livre/page12.jpg" alt="Page 12"></div>
+                <div class="page"><img src="../assets/livre/page13.jpg" alt="Page 13"></div>
+                <div class="page"><img src="../assets/livre/page14.jpg" alt="Page 14"></div>
+                <div class="page"><img src="../assets/livre/page15.jpg" alt="Page 15"></div>
+                
+                <!-- DOS DE COUVERTURE (Dernière page - Page 16) -->
+                <div class="page cover-page">
+                    <img src="../assets/livre/page16.jpg" alt="Dos de couverture">
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="site-footer-bottom">
+        <div class="footer-content">
+            <p>RAPHAËL KLUR &copy; 2026</p>
+        </div>
+    </footer>
+
+    <!-- 1. Importation de la librairie PageFlip (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.js"></script>
+    
+    <!-- 2. Ton script personnel -->
+    <script src="../js/script.js"></script>
+
+    <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script src="/_vercel/insights/script.js"></script>
+</body>
+</html>
