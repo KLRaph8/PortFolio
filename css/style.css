@@ -14,8 +14,8 @@
 /* - Page: Détail Projet (Générique)
 /* 4. COMPOSANTS RÉUTILISABLES
 /* - Galerie de projets
-/* - Liseuse Flipbook 3D (Livre) <--- MISE À JOUR
-/* 5. CLASSES UTILITAIRES
+/* - Liseuse Flipbook 3D (Livre)
+/* 5. CLASSES UTILITAIRES & PREMIUM (Curseur, Transitions) <--- MISE À JOUR
 /* 6. RESPONSIVE (MEDIA QUERIES)  
 /*
 /* =================================================================== */
@@ -54,6 +54,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  
+  /* TRANSITION DE PAGE (Entrée) */
+  opacity: 0;
+  animation: fadeInPage 0.6s ease-out forwards;
 }
 
 .container {
@@ -1152,7 +1156,6 @@ main {
 
 #mon-flipbook {
   background-color: transparent;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   transition: box-shadow 0.3s ease;
 }
 
@@ -1180,7 +1183,7 @@ main {
 }
 
 /* ======================================== */
-/* 5. CLASSES UTILITAIRES               */
+/* 5. CLASSES UTILITAIRES & PREMIUM     */
 /* ======================================== */
 
 .animate-on-scroll {
@@ -1194,41 +1197,56 @@ main {
   transform: translateY(0);
 }
 
-.animate-on-scroll.delay-1 {
-  transition-delay: 0.1s;
+.animate-on-scroll.delay-1 { transition-delay: 0.1s; }
+.animate-on-scroll.delay-2 { transition-delay: 0.2s; }
+.animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+.animate-on-scroll[style*="--delay: 1;"] { transition-delay: 0.1s; }
+.animate-on-scroll[style*="--delay: 2;"] { transition-delay: 0.2s; }
+
+/* TRANSITIONS DE PAGES */
+@keyframes fadeInPage {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
-.animate-on-scroll.delay-2 {
-  transition-delay: 0.2s;
+
+@keyframes fadeOutPage {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
-.animate-on-scroll.delay-3 {
-  transition-delay: 0.3s;
+
+body.page-leaving {
+  animation: fadeOutPage 0.4s ease-in-out forwards;
 }
-.animate-on-scroll.delay-4 {
-  transition-delay: 0.4s;
+
+/* CURSEUR PERSONNALISÉ */
+#custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* Pour ne pas bloquer les clics */
+  z-index: 999999;
+  transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.2s ease;
 }
-.animate-on-scroll[style*="--delay: 0;"] {
-  transition-delay: 0s;
+
+/* Effet au survol des liens */
+#custom-cursor.cursor-hover {
+  transform: translate(-50%, -50%) scale(2.5);
+  background-color: rgba(112, 0, 255, 0.4);
 }
-.animate-on-scroll[style*="--delay: 1;"] {
-  transition-delay: 0.1s;
-}
-.animate-on-scroll[style*="--delay: 2;"] {
-  transition-delay: 0.2s;
-}
-.animate-on-scroll[style*="--delay: 3;"] {
-  transition-delay: 0.3s;
-}
-.animate-on-scroll[style*="--delay: 4;"] {
-  transition-delay: 0.4s;
-}
-.animate-on-scroll[style*="--delay: 5;"] {
-  transition-delay: 0.5s;
-}
-.animate-on-scroll[style*="--delay: 6;"] {
-  transition-delay: 0.6s;
-}
-.animate-on-scroll[style*="--delay: 7;"] {
-  transition-delay: 0.7s;
+
+/* On n'affiche le curseur magique QUE sur les ordinateurs (pas sur tactile) */
+@media (pointer: fine) {
+  body {
+    cursor: none; /* Cache la souris classique */
+  }
+  a, button, input, textarea, .flip-card-inner, .project-image-lightbox {
+    cursor: none !important;
+  }
 }
 
 
@@ -1238,7 +1256,6 @@ main {
 
 @media (max-width: 768px) {
 
-  /* --- Composants Globaux (Mobile) --- */
   .site-header {
     flex-direction: column;
     gap: 15px;
@@ -1259,7 +1276,6 @@ main {
     gap: 20px;
   }
 
-  /* --- Pages (Mobile) --- */
   .hero-section {
     height: 100svh; 
   }
@@ -1310,7 +1326,6 @@ main {
     column-gap: 15px;
   }
 
-  /* Page: À Propos (Mobile) */
   .about-section {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -1325,7 +1340,6 @@ main {
     font-size: 2.5rem;
   }
   
-  /* Page: Contact (Mobile) */
   .contact-main-container {
     grid-template-columns: 1fr;
   }
@@ -1336,7 +1350,6 @@ main {
     font-size: 1.2rem;
   }
 
-  /* --- Composants (Mobile) --- */
   .flip-card-container {
     width: 100%;
     max-width: 350px;
@@ -1358,8 +1371,11 @@ main {
   .bubble-item:nth-child(4n-0) {
     align-self: stretch;
     width: 100%;
-    animation-delay: calc(
-      var(--delay) * 0.1s
-    ) !important;
+    animation-delay: calc(var(--delay) * 0.1s) !important;
+  }
+  
+  /* On s'assure que le curseur ne gêne pas sur mobile */
+  #custom-cursor {
+    display: none !important;
   }
 }
